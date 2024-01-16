@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
+<link type="text/css" rel="stylesheet" id="dark-mode-general-link">
+<style type="text/css" id="dark-mode-custom-style" lang="en"></style>
+<style type="text/css" id="dark-mode-native-style" lang="en"></style>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Closed PNL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/list.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/app.css') }}">
+
+
+
+</head>
+
+<body x-data="{ showOverlay : false }" :class="{' overflow-hidden':showOverlay}" class="bg-none font-iranyekanBakh"
+    cz-shortcut-listen="true">
+    <div @change-overlay-show.window="showOverlay = true" @change-overlay-hide.window="showOverlay = false"
+        @click="$dispatch('aside-handler-hide'),showOverlay=false" :class="{ 'hidden': ! showOverlay }" id="overlay"
+        class="z-50 w-full h-full fixed backdrop-filter blur-sm bg-opacity-60 bg-biscay-700 hidden">
+    </div>
+    
+    <main class="grid lg:grid-cols-24 min-h-screen grid-cols-1">
+
+        
+        {% include './parts/rightSide.html' %}
+
+        <section class="xl:col-span-20 h-height-panel lg:col-span-19">
+            {% include './parts/header.html' %}
+            <div class="w-full h-full bg-gray-200 rounded-tr-3xl xl:px-9 pt-10">
+                <div class="container">
+                   
+                        <div x-init=" state = document.querySelector(`[data-filter-id=${filter}]`).textContent.trim() ">
+                           
+                            <div class="bg-white rounded-2xl lg:px-9 px-4 pt-4 pb-6 mt-2 ">
+                                
+                                <li
+                                    class="grid grid-cols-24 px-4 py-4 gap-x-2 items-center  rounded-xl md:w-auto w-full">
+                                    <div class="flex col-span-9 items-center">
+
+
+                                        <span class="text-gray-800  text-sm font-semibold">
+                                            نام و لوگوی ارز
+                                        </span>
+                                    </div>
+
+                                    <span class="text-gray-800 col-span-5 text-sm flex items-center">
+                                        میزان سود/ضرر
+                                    </span>
+                                    <span class="text-gray-800 col-span-3 text-sm flex items-center">
+                                        اهرم
+                                    </span>
+                                    <span class="text-gray-800 col-span-3 text-sm flex items-center">
+                                        نوع بسته شدن
+                                    </span>
+                                    <div class="text-gray-800 text-sm col-span-4 flex justify-center">
+                                        زمان
+                                    </div>
+                                </li>
+
+
+                                {% for item in pnls %}
+                                
+                                <li
+                                    class="grid grid-cols-24 my-2 px-4 py-4 gap-x-2 hover:bg-white items-center border border-gray-70 border-opacity-20 rounded-xl md:w-auto w-full {% if item['closed_pnl'] > 0 %}bg-green-50{% else %}bg-red-50{% endif %}">
+                                    <div class="flex col-span-9 items-center">
+
+                                        <div
+                                            class="flex items-center text-white justify-center ml-2 w-7 h-7 rounded  bg-gray-150">
+                                            <img src="https://cryptoicons.org/api/icon/{{ item['symbol'].replace('USDT','').lower() }}/200" alt="">
+                                        </div>
+
+                                        <span class="text-gray-800  text-sm font-semibold">
+                                            {{ item['symbol'] }}
+                                        </span>
+                                    </div>
+                                    <span class="text-gray-350 col-span-5 text-sm flex items-center">
+                                        {{ item['closed_pnl'] }}
+                                    </span>
+                                    <span class="text-gray-350 col-span-3 text-sm flex items-center">
+                                        {{ item['leverage'] }}
+                                    </span>
+                                    <span class="text-gray-350 col-span-3 text-sm flex items-center">
+                                        {{ item['side'] }}
+                                    </span>
+                                    <span class="text-gray-350 col-span-3 text-sm flex items-center">
+                                        {{ item['created_at'] }}
+                                    </span>
+                                </li>
+                                {% endfor %}
+
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>

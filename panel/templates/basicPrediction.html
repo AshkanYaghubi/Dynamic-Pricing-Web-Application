@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
+<link type="text/css" rel="stylesheet" id="dark-mode-general-link">
+<style type="text/css" id="dark-mode-custom-style" lang="en"></style>
+<style type="text/css" id="dark-mode-native-style" lang="en"></style>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پیشگامان💪🏻✨ - پنل کاربری</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/list.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/app.css') }}">
+
+
+
+</head>
+
+<body x-data="{ showOverlay : false }" :class="{' overflow-hidden':showOverlay}" class="bg-none font-iranyekanBakh"
+    cz-shortcut-listen="true">
+    <div @change-overlay-show.window="showOverlay = true" @change-overlay-hide.window="showOverlay = false"
+        @click="$dispatch('aside-handler-hide'),showOverlay=false" :class="{ 'hidden': ! showOverlay }" id="overlay"
+        class="z-50 w-full h-full fixed backdrop-filter blur-sm bg-opacity-60 bg-biscay-700 hidden">
+    </div>
+
+    <main class="grid lg:grid-cols-24 min-h-screen grid-cols-1">
+
+
+        {% include './parts/rightSide.html' %}
+
+        <section class="xl:col-span-20 h-height-panel lg:col-span-19">
+            {% include './parts/header.html' %}
+            <div class="w-full h-full bg-gray-200 rounded-tr-3xl xl:px-9 pt-10 pb-14 ">
+                <div class="container">
+                    <section 
+                        x-data="{type:window.Livewire.find('GnN8UjgT6HgHNK4IWFpG').entangle('type')}"
+                        class="lg:grid lg:grid-cols-24 lg:gap-6 flex flex-col">
+                        {% include './parts/subMenu.html' %}
+                        <div class="xl:col-span-18 col-span-16">
+                            <div class="bg-white rounded-2xl md:px-11 px-3 sm:py-8 py-8">
+                                <div wire:id="V0fXhfbBOKm61RAqmEho" class="flex flex-col">
+                                    <div>
+                                        <div class="mb-10  last:mb-0">
+                                            <div>
+                                                <h2 class="text-dark-550 font-bold flex items-center mb-3 text-2xl">
+                                                    <i class="w-2 h-2 bg-gray-350 ml-2 rounded-full "></i>
+                                                    قیمت گذاری بسته خدمات پایه
+                                                </h2>
+                                            </div>
+                                            <div>
+                                                <div class="mb-6 mt-8">
+                                                    <div
+                                                        class="border border-blue-700 bg-blue-700 bg-opacity-5 rounded-md p-4 mb-2">
+                                                        <div class="mb-8">
+                                                            <h6 class="font-bold text-blue-700 text-base mb-1">
+                                                                توجه :‌
+                                                            </h6>
+                                                            <p class="font-semibold text-blue-700 text-13 leading-7">
+                                                                در این بخش شما قادر به مشاهده تخمین قیمت بسته‌های پایه نظیر تماس، پیامک به همراه تلفن هستید. خصوصیت دریافت بسته‌های ترکیبی مدیریت ساده‌تر و دریافت تخفیف های بیشتر نسبت به استفاده عادی از خدمات و یا دریافت بسته‌های جداگانه می‌باشد.
+                                                            </p>
+                                                        </div>
+                                                        <ul>
+                                                            <li class="font-semibold text-13 text-blue-700 leading-7">۱.
+                                                                این قیمت تمرکز زیادی بر رقابتی بودن با دیگر اپراتورها دارد
+                                                            </li>
+                                                            <li class="font-semibold text-13 text-blue-700 leading-7">۲.
+                                                                به علت اینکه بسته پایه الزاما باید شامل همه خدمات پایه باشد، میزان کف هر خدمت به عنوان پیش‌فرض تنظیم گردیده است.
+                                                            </li>
+                                                            <li class="font-semibold text-13 text-blue-700 leading-7">۳.
+                                                        .قیمت ذکر شده قیمت خام بوده و مالیات و عوارض روی آن به علت سهولت در محاسبه همه موارد نهایی برای اپراتور منظور نگردیده است.
+                                                            </li>
+                                            
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="text-dark-550 my-4"> حالت وارد کردن مقادیر آسان؟ 
+                                                                <input 
+                                                                class="text-blue-700 w-5 h-5 bg-transparent border border-blue-700 border-opacity-50 rounded-md" 
+                                                                type="checkbox"
+                                                                checked="true"
+                                                                onChange="switchEasy(this.checked)">
+
+                                                                 </div>
+                                                <div class="bg-white rounded-2xl md:px-11 px-3 sm:py-8 py-2" id="easyInput">
+                                                    <form action="/result" method="post"  enctype="multipart/form-data">
+                                                        <input type="hidden" name="action" value="basicPrediction">
+                                                        <div class="flex flex-col">
+                                                            
+                                                            <div class="mb-4 last:mb-0 mt-4" > 
+                                                                <div>
+                                                                    <div class="grid sm:grid-cols-2 grid-cols-1 gap-x-14 gap-y-6">
+                                                                        <div class="flex flex-col">
+                                                                            <label class="text-dark-550 text-sm mb-1 font-medium pr-3" for="">
+                                                                                حجم اینترنت(مگابایت)     |   <span id="internetShow"> 60 مگابایت - 0.06 گیگابایت </span>
+                                                                            </label>
+                                                                            <input 
+                                                                            name="internet"
+                                                                             style="direction: ltr;" 
+                                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-blue-700 focus:bg-opacity-10 border border-blue-700 border-opacity-0 focus:border-opacity-100" 
+                                                                            type="range"
+                                                                            oninput="onInternetValueChange(this.value,'internetShow')"
+                                                                            min="60"
+                                                                            max="10240"
+                                                                            required="" 
+                                                                            value="60"> 
+                                                                        </div>
+                                                                        <div class="flex flex-col">
+                                                                            <label class="text-dark-550 text-sm mb-1 font-medium pr-3" for="">
+                                                                                میزان تماس(دقیقه)     |   <span id="phoneShow"> 60 دقیقه</span>
+                                                                            </label>
+                                                                            <input 
+                                                                            name="call" style="direction: ltr;" 
+                                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-blue-700 focus:bg-opacity-10 border border-blue-700 border-opacity-0 focus:border-opacity-100" 
+                                                                            type="range"
+                                                                            oninput="onPhoneValueChange(this.value,'phoneShow')"
+                                                                            min="60"
+                                                                            max="3000"
+                                                                            required="" 
+                                                                            value="60">
+                                                                        </div>
+                                                                        <div class="flex flex-col">
+                                                                            <label class="text-dark-550 text-sm mb-1 font-medium pr-3" for="">
+                                                                                پیامک(عدد)     |   <span id="smsShow"> 60 عدد</span>
+                                                                            </label>
+                                                                            <input 
+                                                                            name="sms" style="direction: ltr;" 
+                                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-blue-700 focus:bg-opacity-10 border border-blue-700 border-opacity-0 focus:border-opacity-100" 
+                                                                            type="range"
+                                                                            oninput="onSmsValueChange(this.value,'smsShow')"
+                                                                            min="60"
+                                                                            max="500"
+                                                                            required="" 
+                                                                            value="60">
+                                                                        </div>
+                                                                        <div class="flex flex-col">
+                                                                            <label class="text-dark-550 text-sm mb-1 font-medium pr-3" for="">
+                                                                                بازه زمانی(روز)     |   <span id="periodShow"> 1 روز</span>
+                                                                            </label>
+                                                                            <input 
+                                                                            name="period" style="direction: ltr;" 
+                                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-blue-700 focus:bg-opacity-10 border border-blue-700 border-opacity-0 focus:border-opacity-100" 
+                                                                            type="range"
+                                                                            oninput="onPeriodValueChange(this.value,'periodShow')"
+                                                                            min="1"
+                                                                            max="30"
+                                                                            required="" 
+                                                                            value="1">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" class="py-2 self-end px-4 text-white bg-blue-700 rounded border border-blue-700 transition duration-200 hover:bg-white hover:text-blue-700 hover:shadow-sm font-medium mt-10"> 
+                                                                پردازش
+                                                            </button>
+                                                            <button wire:target="onSubmit" wire:loading.flex="" type="button" class="py-2 self-end px-4 text-white bg-blue-700 rounded border border-blue-700 font-medium mt-10">
+                                                                <svg class="w-5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="25 25 50 50">
+                    
+                                                                    <circle class="stroke-current text-white text-opacity-30" cx="50" cy="50" r="20" fill="none" stroke-width="8" stroke-linecap="round" stroke-dashoffset="0" stroke-dasharray="200, 300">
+                    
+                                                                    </circle>
+                                                                    <circle class="stroke-current text-white" cx="50" cy="50" r="20" fill="none" stroke-width="8" stroke-linecap="round" stroke-dashoffset="0" stroke-dasharray="100, 200">
+                                                                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="2.5s" repeatCount="indefinite"></animateTransform>
+                                                                        <animate attributeName="stroke-dashoffset" values="0;-30;-124" dur="1.25s" repeatCount="indefinite"></animate>
+                                                                        <animate attributeName="stroke-dasharray" values="0,200;110,200;110,200" dur="1.25s" repeatCount="indefinite"></animate>
+                                                                    </circle>
+                                                                </svg> </button>
+                                                        </div>
+                    
+                                                    </form>
+                                                </div>
+
+                                                <div class="bg-white rounded-2xl md:px-11 px-3 sm:py-8 py-2" style="display: none;"  id="hardInput">
+                                                    <form action="/result" method="post"  enctype="multipart/form-data">
+                                                        <input type="hidden" name="action" value="basicPrediction">
+                                                        <div class="flex flex-col">
+                                                            
+                                                            <div class="mb-4 last:mb-0 mt-4"> 
+                                                                <div>
+                                                                    <div class="grid sm:grid-cols-2 grid-cols-1 gap-x-14 gap-y-6">
+                                                                        <div class="flex flex-col">
+                                                                            <label class="text-dark-550 text-sm mb-1 font-medium pr-3" for="">
+                                                                                حجم اینترنت(مگابایت)  
+                                                                            </label>
+                                                                            <input 
+                                                                            name="internet" 
+                                                                            style="direction: ltr;" 
+                                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-blue-700 focus:bg-opacity-10 border border-blue-700 border-opacity-0 focus:border-opacity-100" 
+                                                                            type="number"
+                                                                            placeholder="مثال: 1024"
+                                                                            min="60"
+                                                                            max="10240"
+                                                                            required="" 
+                                                                            value="60"> 
+                                                                        </div>
+                                                                        <div class="flex flex-col">
+                                                                            <label class="text-dark-550 text-sm mb-1 font-medium pr-3" for="">
+                                                                                میزان تماس(دقیقه) 
+                                                                            </label>
+                                                                            <input 
+                                                                            name="call" 
+                                                                            style="direction: ltr;" 
+                                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-blue-700 focus:bg-opacity-10 border border-blue-700 border-opacity-0 focus:border-opacity-100" 
+                                                                            type="number"
+                                                                            placeholder="مثال: 150"
+                                                                            min="60"
+                                                                            max="3000"
+                                                                            required="" 
+                                                                            value="60">
+                                                                        </div>
+                                                                        <div class="flex flex-col">
+                                                                            <label class="text-dark-550 text-sm mb-1 font-medium pr-3" for="">
+                                                                                پیامک(عدد) 
+                                                                            </label>
+                                                                            <input 
+                                                                            name="sms" style="direction: ltr;" 
+                                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-blue-700 focus:bg-opacity-10 border border-blue-700 border-opacity-0 focus:border-opacity-100" 
+                                                                            type="number"
+                                                                            placeholder="مثال: 1024"
+                                                                            min="60"
+                                                                            max="500"
+                                                                            required="" 
+                                                                            value="60">
+                                                                        </div>
+                                                                        <div class="flex flex-col">
+                                                                            <label class="text-dark-550 text-sm mb-1 font-medium pr-3" for="">
+                                                                                بازه زمانی(روز)  
+                                                                            </label>
+                                                                            <input 
+                                                                            name="period" 
+                                                                            style="direction: ltr;" 
+                                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-blue-700 focus:bg-opacity-10 border border-blue-700 border-opacity-0 focus:border-opacity-100" 
+                                                                            type="number"
+                                                                            placeholder="مثال: 7"
+                                                                            min="1"
+                                                                            max="30"
+                                                                            required="" 
+                                                                            value="1">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" class="py-2 self-end px-4 text-white bg-blue-700 rounded border border-blue-700 transition duration-200 hover:bg-white hover:text-blue-700 hover:shadow-sm font-medium mt-10"> 
+                                                                پردازش
+                                                            </button>
+                                                            <button wire:target="onSubmit" wire:loading.flex="" type="button" class="py-2 self-end px-4 text-white bg-blue-700 rounded border border-blue-700 font-medium mt-10">
+                                                                <svg class="w-5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="25 25 50 50">
+                    
+                                                                    <circle class="stroke-current text-white text-opacity-30" cx="50" cy="50" r="20" fill="none" stroke-width="8" stroke-linecap="round" stroke-dashoffset="0" stroke-dasharray="200, 300">
+                    
+                                                                    </circle>
+                                                                    <circle class="stroke-current text-white" cx="50" cy="50" r="20" fill="none" stroke-width="8" stroke-linecap="round" stroke-dashoffset="0" stroke-dasharray="100, 200">
+                                                                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="2.5s" repeatCount="indefinite"></animateTransform>
+                                                                        <animate attributeName="stroke-dashoffset" values="0;-30;-124" dur="1.25s" repeatCount="indefinite"></animate>
+                                                                        <animate attributeName="stroke-dasharray" values="0,200;110,200;110,200" dur="1.25s" repeatCount="indefinite"></animate>
+                                                                    </circle>
+                                                                </svg> </button>
+                                                        </div>
+                    
+                                                    </form>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                    </section>
+
+                </div>
+            </div>
+        </section>
+        </div>
+        </div>
+        </section>
+    </main>
+
+</body>
+<script>
+
+
+ function switchEasy(event){
+     a = document.getElementById('easyInput');
+     b = document.getElementById('hardInput');
+     if(event){
+         a.style.display='block';
+         b.style.display='none';
+     }else{
+        b.style.display='block';
+        a.style.display='none';
+     }
+ 
+ } 
+
+ function onInternetValueChange(event,target){
+     a = document.getElementById(target);
+     a.innerHTML = event + ' مگابایت ' +' - '+ (event / 1024).toFixed(2) + ' گیگابایت ';
+ } 
+
+ function onPhoneValueChange(event,target){
+     a = document.getElementById(target);
+     a.innerHTML = event + ' دقیقه ' +' - '+ (event / 60).toFixed(2) + ' ساعت ';
+   
+ } 
+ function onSmsValueChange(event,target){
+     a = document.getElementById(target);
+     a.innerHTML = event + ' عدد ';
+   
+ } 
+ function onPeriodValueChange(event,target){
+     a = document.getElementById(target);
+     a.innerHTML = event + ' روز ';
+   
+ } 
+
+
+
+</script>
+
+</html>

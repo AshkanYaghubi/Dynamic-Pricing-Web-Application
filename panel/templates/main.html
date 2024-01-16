@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
+<link type="text/css" rel="stylesheet" id="dark-mode-general-link">
+<style type="text/css" id="dark-mode-custom-style" lang="en"></style>
+<style type="text/css" id="dark-mode-native-style" lang="en"></style>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پیشگامان💪🏻✨ - پنل کاربری</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/list.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/app.css') }}">
+
+
+
+</head>
+
+<body x-data="{ showOverlay : false }" :class="{' overflow-hidden':showOverlay}" class="bg-none font-iranyekanBakh"
+    cz-shortcut-listen="true">
+    <div @change-overlay-show.window="showOverlay = true" @change-overlay-hide.window="showOverlay = false"
+        @click="$dispatch('aside-handler-hide'),showOverlay=false" :class="{ 'hidden': ! showOverlay }" id="overlay"
+        class="z-50 w-full h-full fixed backdrop-filter blur-sm bg-opacity-60 bg-biscay-700 hidden">
+    </div>
+    <div id="backShadow" style="display:none"
+        class="z-1000 w-full  h-full fixed top-0 right-0 backdrop-filter blur-sm bg-opacity-60 bg-biscay-700"></div>
+
+    <div id="updateModal" class="absolute w-96 pt-5 pb-8 px-7 bg-white rounded-lg overflow-hidden z-10"
+        style="top: 40%;left: 40%;display:none">
+        <div class="px-1 flex items-center justify-between">
+            <span class="text-gray-300 font-medium text-lg"> پروسه کرال و بروزرسانی مدل و پایگاه داده</span>
+        </div>
+        <hr class="border-biscay-100 mt-4 mb-5">
+
+        <img style="margin:  24px auto  24px auto" src="{{ url_for('static', filename='images/loading.gif') }}">
+    </div>
+
+
+    <main class="grid lg:grid-cols-24 min-h-screen grid-cols-1">
+
+
+        {% include './parts/rightSide.html' %}
+
+        <section class="xl:col-span-20 h-height-panel lg:col-span-19">
+            {% include './parts/header.html' %}
+            <div class="w-full h-full bg-gray-200 rounded-tr-3xl xl:px-9 pt-10 pb-14 ">
+                <div class="container">
+                    {% block messageb %}
+                    {% if message |length  > 1 %}
+                    <li class="flex font-medium bg-opacity-10 rounded-lg  py-4 mb-4 last:mb-0 bg-green-700 px-8 py-4">
+                        <span class="bg-green-700 text-white w-7 h-7 flex items-center  transition duration-200 justify-center group rounded-lg">
+                            <svg class="w-4 h-4" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.849 2.91808C17.4348 2.3323 17.4348 1.38255 16.849 0.796762C16.2633 0.210975 15.3135 0.210975 14.7277 0.796762L6.5012 9.02328L2.91808 5.44015C2.3323 4.85437 1.38255 4.85437 0.796762 5.44015C0.210975 6.02594 0.210975 6.97569 0.796762 7.56147L5.43997 12.2047C5.78681 12.5515 6.26124 12.693 6.71217 12.6291C7.02331 12.5853 7.32334 12.4438 7.56263 12.2045L16.849 2.91808Z"></path>
+                            </svg>
+                        </span>
+                        <p class="w-full px-4">
+                        {{ message }}
+                        </p>
+                    </li>
+                    {% endif %}
+                    {% endblock messageb %}
+                    <div>
+
+                        <div class="grid md:grid-cols-3 sm:grid-cols-2  gap-7 mb-10">
+                            <div class="  bg-white rounded-xl xl:pt-7 pt-5 ">
+                                <div
+                                    class="flex items-center md:justify-start justify-center  xl:px-6 px-3 xl:pb-6 pb-3">
+                                    <div
+                                        class="bg-customOrange-700 rounded-2xl xl:w-72 xl:h-72 w-15 h-15 inline-flex justify-center items-center xl:ml-7 ml-3">
+                                        <svg width="24" height="27" viewBox="0 0 24 27" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M7.85797 0.980469C8.41026 0.980469 8.85797 1.42818 8.85797 1.98047V3.04538C9.74732 2.98786 10.7213 2.96278 11.7872 2.96278C12.8531 2.96278 13.8271 2.98786 14.7164 3.04538V1.98047C14.7164 1.42818 15.1641 0.980469 15.7164 0.980469C16.2687 0.980469 16.7164 1.42818 16.7164 1.98047V3.25311C21.1826 3.93115 22.9104 5.94526 23.4082 10.8035C23.4411 11.1243 23.4686 11.4575 23.4911 11.8035C23.5121 12.1253 23.5289 12.4581 23.5417 12.8023C23.5645 13.4148 23.5749 14.0635 23.5749 14.7505C23.5749 24.4576 21.4944 26.5382 11.7872 26.5382C2.08004 26.5382 -0.000488281 24.4576 -0.000488281 14.7505C-0.000488281 14.0635 0.00993049 13.4148 0.0327333 12.8023C0.0455488 12.4581 0.062276 12.1253 0.0832637 11.8035C0.105838 11.4575 0.133341 11.1243 0.166208 10.8035C0.663965 5.94526 2.39185 3.93115 6.85797 3.25311V1.98047C6.85797 1.42818 7.30569 0.980469 7.85797 0.980469ZM6.85797 5.2793C5.55485 5.50288 4.67569 5.84374 4.05594 6.2981C3.1423 6.9679 2.47651 8.14595 2.17775 10.8035H21.3967C21.0979 8.14595 20.4321 6.9679 19.5185 6.2981C18.8987 5.84374 18.0196 5.50288 16.7164 5.2793V5.9097C16.7164 6.46198 16.2687 6.9097 15.7164 6.9097C15.1641 6.9097 14.7164 6.46198 14.7164 5.9097V5.05122C13.8686 4.99241 12.8989 4.96278 11.7872 4.96278C10.6756 4.96278 9.70581 4.99241 8.85797 5.05122V5.9097C8.85797 6.46198 8.41026 6.9097 7.85797 6.9097C7.30569 6.9097 6.85797 6.46198 6.85797 5.9097V5.2793ZM21.5749 14.7505C21.5749 14.0544 21.5639 13.4067 21.5403 12.8035H2.03414C2.01054 13.4067 1.99951 14.0544 1.99951 14.7505C1.99951 17.1316 2.12971 18.9086 2.42863 20.2536C2.72251 21.5759 3.15221 22.3551 3.66738 22.8703C4.18256 23.3855 4.96173 23.8152 6.28406 24.109C7.62911 24.408 9.40606 24.5382 11.7872 24.5382C14.1683 24.5382 15.9453 24.408 17.2903 24.109C18.6127 23.8152 19.3919 23.3855 19.907 22.8703C20.4222 22.3551 20.8519 21.5759 21.1458 20.2536C21.4447 18.9086 21.5749 17.1316 21.5749 14.7505Z"
+                                                fill="white"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M4.89355 16.7188C4.89355 16.1665 5.34127 15.7188 5.89355 15.7188H8.84048C9.39276 15.7188 9.84048 16.1665 9.84048 16.7188C9.84048 17.271 9.39276 17.7188 8.84048 17.7188H5.89355C5.34127 17.7188 4.89355 17.271 4.89355 16.7188ZM14.7343 15.7188C14.182 15.7188 13.7343 16.1665 13.7343 16.7188C13.7343 17.271 14.182 17.7188 14.7343 17.7188H17.6812C18.2335 17.7188 18.6812 17.271 18.6812 16.7188C18.6812 16.1665 18.2335 15.7188 17.6812 15.7188H14.7343ZM14.7343 19.648C14.182 19.648 13.7343 20.0957 13.7343 20.648C13.7343 21.2003 14.182 21.648 14.7343 21.648H17.6812C18.2335 21.648 18.6812 21.2003 18.6812 20.648C18.6812 20.0957 18.2335 19.648 17.6812 19.648H14.7343ZM5.89355 19.648C5.34127 19.648 4.89355 20.0957 4.89355 20.648C4.89355 21.2003 5.34127 21.648 5.89355 21.648H8.84048C9.39276 21.648 9.84048 21.2003 9.84048 20.648C9.84048 20.0957 9.39276 19.648 8.84048 19.648H5.89355Z"
+                                                fill="white"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-gray-70  text-base  font-normal "> آخرین بروزرسانی
+                                        </span>
+                                        <span class="text-gray-800 xl:text-xl text-xl font-bold">
+                                            {{ last_update }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="border-t flex items-center md:justify-start justify-center border-biscay-650 border-opacity-10 py-3 px-6">
+                                    <a 
+                                    onclick="update()"
+                                    wire:click="enableVipIncreaseModal()"
+                                        class="text-blue-700 font-semibold text-sm inline-flex items-center cursor-pointer  transform group transition duration-200 hover:text-gray-900 "
+                                        href="#">
+                                        بروزرسانی پایگاه داده
+                                        <svg class="w-4 h-3 mr-1 -mt-1" viewBox="0 0 16 11" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" opacity="0.4"
+                                                d="M11.0387 4.90279L14.0915 4.63281C14.7766 4.63281 15.332 5.19368 15.332 5.88545C15.332 6.57722 14.7766 7.13808 14.0915 7.13808L11.0387 6.8681C10.5013 6.8681 10.0655 6.42814 10.0655 5.88545C10.0655 5.34185 10.5013 4.90279 11.0387 4.90279Z">
+                                            </path>
+                                            <path fill="currentColor"
+                                                d="M0.788309 4.95239C0.836022 4.90421 1.01427 4.70059 1.18172 4.53151C2.1585 3.4725 4.70891 1.74081 6.04309 1.21085C6.24565 1.12631 6.75789 0.94632 7.03247 0.933594C7.29444 0.933594 7.54471 0.994498 7.78328 1.11449C8.08127 1.28266 8.31893 1.54809 8.45037 1.8608C8.53409 2.07715 8.66553 2.7271 8.66553 2.73892C8.79607 3.44886 8.86719 4.60333 8.86719 5.8796C8.86719 7.09405 8.79607 8.20124 8.68894 8.92301C8.67723 8.93574 8.5458 9.74204 8.40266 10.0184C8.14068 10.5238 7.62844 10.8365 7.08018 10.8365H7.03247C6.67507 10.8247 5.92426 10.5111 5.92426 10.5002C4.6612 9.97021 2.1711 8.32214 1.17002 7.22677C1.17002 7.22677 0.887337 6.94497 0.764902 6.76953C0.574048 6.51682 0.478621 6.20412 0.478621 5.89141C0.478621 5.54235 0.585752 5.21783 0.788309 4.95239Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-xl xl:pt-7 pt-5 ">
+                                <div
+                                    class="flex items-center md:justify-start justify-center xl:px-6 px-3 xl:pb-6 pb-3">
+                                    <div
+                                        class="bg-blue-700 rounded-2xl xl:w-72 xl:h-72 w-15 h-15 inline-flex justify-center items-center xl:ml-7 ml-3">
+                                        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M18.4154 11.9167C17.8171 11.9167 17.332 12.4017 17.332 13C17.332 13.5983 17.8171 14.0834 18.4154 14.0834H20.582C21.1803 14.0834 21.6654 13.5983 21.6654 13C21.6654 12.4017 21.1803 11.9167 20.582 11.9167H18.4154Z"
+                                                fill="white"></path>
+                                            <path
+                                                d="M23.5835 7.58331H18.4658C17.748 7.58331 17.0372 7.72342 16.3741 7.99565C15.711 8.26783 15.1084 8.66684 14.6009 9.16983C14.0934 9.67282 13.6907 10.2699 13.4161 10.9271C13.1414 11.5843 13 12.2886 13 13C13 13.7113 13.1414 14.4157 13.4161 15.0729C13.6907 15.73 14.0934 16.3271 14.6009 16.8301C15.1084 17.3331 15.711 17.7321 16.3741 18.0043C17.0372 18.2765 17.748 18.4166 18.4658 18.4166H23.5835C23.6942 17.7762 23.7766 17.0578 23.8333 16.25H18.4658C18.0351 16.25 17.6086 16.1659 17.2108 16.0026C16.8129 15.8393 16.4514 15.5999 16.1468 15.2981C15.8423 14.9963 15.6007 14.638 15.4359 14.2437C15.2711 13.8494 15.1863 13.4268 15.1863 13C15.1863 12.5732 15.2711 12.1506 15.4359 11.7563C15.6007 11.362 15.8423 11.0037 16.1468 10.7019C16.4514 10.4001 16.8129 10.1607 17.2108 9.99737C17.6086 9.83405 18.0351 9.74998 18.4658 9.74998H23.8333C23.7766 8.94217 23.6942 8.2238 23.5835 7.58331Z"
+                                                fill="white"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M0 13C0 23.7055 2.2945 26 13 26C23.7055 26 26 23.7055 26 13C26 2.2945 23.7055 0 13 0C2.2945 0 0 2.2945 0 13ZM2.16667 13C2.16667 15.6269 2.31025 17.59 2.64085 19.0776C2.96599 20.5405 3.44249 21.4075 4.0175 21.9825C4.59252 22.5575 5.45945 23.034 6.92242 23.3591C8.41 23.6897 10.3731 23.8333 13 23.8333C15.6269 23.8333 17.59 23.6897 19.0776 23.3591C20.5405 23.034 21.4075 22.5575 21.9825 21.9825C22.5575 21.4075 23.034 20.5405 23.3591 19.0776C23.6897 17.59 23.8333 15.6269 23.8333 13C23.8333 10.3731 23.6897 8.41 23.3591 6.92242C23.034 5.45945 22.5575 4.59252 21.9825 4.0175C21.4075 3.44249 20.5405 2.96599 19.0776 2.64085C17.59 2.31025 15.6269 2.16667 13 2.16667C10.3731 2.16667 8.41 2.31025 6.92242 2.64085C5.45945 2.96599 4.59252 3.44249 4.0175 4.0175C3.44249 4.59252 2.96599 5.45945 2.64085 6.92242C2.31025 8.41 2.16667 10.3731 2.16667 13Z"
+                                                fill="white"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-gray-70 text-base font-normal">
+                                            بسته‌ های یافت شده
+                                        </span>
+                                        <span class="text-gray-800 xl:text-xl text-2xl font-bold flex items-center">
+                                            {{ packages|count }}
+                                            بسته
+                                        </span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="border-t flex items-center md:justify-start justify-center border-biscay-650 border-opacity-10 py-3 px-6">
+                                    <a onclick="update()"
+                                        class="text-blue-700 font-semibold text-sm inline-flex items-center  cursor-pointer transform group transition duration-200 hover:text-gray-900 ">
+                                        بروزرسانی بسته‌ها
+                                        <svg class="w-4 h-3 mr-1 -mt-1" viewBox="0 0 16 11" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" opacity="0.4"
+                                                d="M11.0387 4.90279L14.0915 4.63281C14.7766 4.63281 15.332 5.19368 15.332 5.88545C15.332 6.57722 14.7766 7.13808 14.0915 7.13808L11.0387 6.8681C10.5013 6.8681 10.0655 6.42814 10.0655 5.88545C10.0655 5.34185 10.5013 4.90279 11.0387 4.90279Z">
+                                            </path>
+                                            <path fill="currentColor"
+                                                d="M0.788309 4.95239C0.836022 4.90421 1.01427 4.70059 1.18172 4.53151C2.1585 3.4725 4.70891 1.74081 6.04309 1.21085C6.24565 1.12631 6.75789 0.94632 7.03247 0.933594C7.29444 0.933594 7.54471 0.994498 7.78328 1.11449C8.08127 1.28266 8.31893 1.54809 8.45037 1.8608C8.53409 2.07715 8.66553 2.7271 8.66553 2.73892C8.79607 3.44886 8.86719 4.60333 8.86719 5.8796C8.86719 7.09405 8.79607 8.20124 8.68894 8.92301C8.67723 8.93574 8.5458 9.74204 8.40266 10.0184C8.14068 10.5238 7.62844 10.8365 7.08018 10.8365H7.03247C6.67507 10.8247 5.92426 10.5111 5.92426 10.5002C4.6612 9.97021 2.1711 8.32214 1.17002 7.22677C1.17002 7.22677 0.887337 6.94497 0.764902 6.76953C0.574048 6.51682 0.478621 6.20412 0.478621 5.89141C0.478621 5.54235 0.585752 5.21783 0.788309 4.95239Z">
+                                            </path>
+                                        </svg> </a>
+                                </div>
+                            </div>
+                            <div class="  bg-white rounded-xl xl:pt-7 pt-5">
+                                <div
+                                    class="flex items-center md:justify-start justify-center  xl:px-6 px-3 xl:pb-6 pb-3">
+                                    <div
+                                        class="bg-red-700 rounded-2xl xl:w-72 xl:h-72 w-15 h-15 inline-flex justify-center items-center xl:ml-7 ml-3">
+                                        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12.8015 1.06415C13.9118 1.06415 15.6602 6.14217 16.2724 8.0319C16.4067 8.44659 16.7888 8.73324 17.2245 8.74764C19.1964 8.81284 24.4742 9.09789 24.4742 10.2814C24.4742 11.449 20.7068 14.3998 19.2171 15.521C18.8641 15.7867 18.7199 16.2477 18.8561 16.668C19.4637 18.5435 20.9749 23.5635 20.0171 24.3497C19.0731 25.1247 15.0122 22.0262 13.4161 20.7478C13.0372 20.4443 12.4992 20.4439 12.1201 20.7472C10.5227 22.0253 6.46296 25.1248 5.5859 24.3497C4.69482 23.5622 6.12616 18.5275 6.69689 16.6591C6.824 16.243 6.6782 15.7908 6.33049 15.5293C4.84843 14.4144 1.0625 11.4518 1.0625 10.2814C1.0625 9.09659 6.35184 8.81222 8.31866 8.74743C8.75141 8.73317 9.13107 8.45074 9.26767 8.03987C9.89384 6.15648 11.6897 1.06415 12.8015 1.06415Z"
+                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-gray-70 text-base  font-normal">درخواست های قیمت
+                                            گذاری شما</span>
+                                        <span class="text-gray-800 text-xl font-bold">
+                                            {% block pricingcount %}
+                                            {% if pricing_count > 0 %}
+                                            {{ pricing_count }}
+                                            درخواست {% else %}
+                                            بدون درخواست
+                                            {% endif %}
+                                            {% endblock pricingcount %}
+
+                                        </span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="border-t flex items-center md:justify-start justify-center border-biscay-650 border-opacity-10 py-3 px-6">
+                                    <a href="/predictionHistory"
+                                        class="text-blue-700 font-semibold text-sm inline-flex items-center  transform group transition duration-200 hover:text-gray-900 "
+                                        href="#">
+                                        تاریخچه درخواست‌ها
+                                        <svg class="w-4 h-3 mr-1 -mt-1" viewBox="0 0 16 11" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" opacity="0.4"
+                                                d="M11.0387 4.90279L14.0915 4.63281C14.7766 4.63281 15.332 5.19368 15.332 5.88545C15.332 6.57722 14.7766 7.13808 14.0915 7.13808L11.0387 6.8681C10.5013 6.8681 10.0655 6.42814 10.0655 5.88545C10.0655 5.34185 10.5013 4.90279 11.0387 4.90279Z">
+                                            </path>
+                                            <path fill="currentColor"
+                                                d="M0.788309 4.95239C0.836022 4.90421 1.01427 4.70059 1.18172 4.53151C2.1585 3.4725 4.70891 1.74081 6.04309 1.21085C6.24565 1.12631 6.75789 0.94632 7.03247 0.933594C7.29444 0.933594 7.54471 0.994498 7.78328 1.11449C8.08127 1.28266 8.31893 1.54809 8.45037 1.8608C8.53409 2.07715 8.66553 2.7271 8.66553 2.73892C8.79607 3.44886 8.86719 4.60333 8.86719 5.8796C8.86719 7.09405 8.79607 8.20124 8.68894 8.92301C8.67723 8.93574 8.5458 9.74204 8.40266 10.0184C8.14068 10.5238 7.62844 10.8365 7.08018 10.8365H7.03247C6.67507 10.8247 5.92426 10.5111 5.92426 10.5002C4.6612 9.97021 2.1711 8.32214 1.17002 7.22677C1.17002 7.22677 0.887337 6.94497 0.764902 6.76953C0.574048 6.51682 0.478621 6.20412 0.478621 5.89141C0.478621 5.54235 0.585752 5.21783 0.788309 4.95239Z">
+                                            </path>
+                                        </svg> </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-8">
+                                <h3 class="flex items-center md:text-26 text-xl text-biscay-700 font-semibold">
+                                    <i class="md:flex hidden w-2 h-2 rounded-full bg-blue-700 ml-2"></i>
+                                    {% block read %}
+                                    {% if show == 'all' %}
+                                    همه بسته‌‌ها
+                                    {% elif show == 'rightel' %}
+                                    بسته‌های رایتل❤️
+                                    {% elif show == 'irancell' %}
+                                    بسته‌های ایرانسل
+                                    {% elif show == 'hamrahe_aval' %}
+                                    بسته‌های همراه اول
+                                    {% endif %}
+                                    {% endblock read %}
+                                </h3>
+
+                                <div x-data="{ controleState(e) {state = e.target.textContent.trim()}}"
+                                    class="relative group">
+                                    <button
+                                        class="border border-blue-700 flex items-center h-10 md:px-3 px-1.5 rounded-md text-blue-700 font-semibold text-sm transition duration-200 group-hover:bg-blue-700 group-hover:text-white">
+                                        <span class="mt-0.5" x-text="state">بسته‌های موجود</span>
+                                        <i
+                                            class="flex md:ml-3 ml-1 md:mr-5 mr-2 h-6 border-l border-blue-700 border-opacity-30 transition duration-200 group-hover:border-white"></i>
+                                        <svg width="10" height="7" viewBox="0 0 10 7" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                class="stroke-current text-blue-700 transition duration-200 group-hover:text-white"
+                                                d="M8.58333 1.60425L4.79167 5.39591L1 1.60425" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </button>
+                                    <div x-data="{ controleState(e) { state = e.target.textContent.trim() }}"
+                                        class="absolute top-full  pt-4 min-w-160 w-full hidden group-hover:block left-0">
+                                        <ul class="px-3 py-2 bg-white shadow-sm rounded-md w-full">
+                                            <li>
+                                                <a href="/" data-filter-id="all"
+                                                    class="text-gray-500 text-sm px-3 py-1 hover:bg-blue-Violet-350 hover:font-bold bg-opacity-30 w-full text-right rounded">
+                                                    همه بسته‌ها
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/?show=rightel" data-filter-id="deposit"
+                                                    class="text-gray-500 text-sm px-3 py-1 hover:bg-blue-Violet-350 hover:font-bold bg-opacity-30 w-full text-right rounded">
+                                                    رایتل
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/?show=hamrahe_aval" data-filter-id="failed"
+                                                    class="text-gray-500 text-sm px-3 py-1 hover:bg-blue-Violet-350 hover:font-bold bg-opacity-30 w-full text-center rounded">
+                                                    همراه اول
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/?show=irancell" data-filter-id="failed"
+                                                    class="text-gray-500 text-sm px-3 py-1 hover:bg-blue-Violet-350 hover:font-bold bg-opacity-30 w-full text-right rounded">
+                                                    ایرانسل
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-2xl lg:px-9 px-4 pt-4 pb-6 mt-2 ">
+
+                                <li
+                                    class="grid grid-cols-24 px-4 py-4 gap-x-2 items-center  rounded-xl md:w-auto w-full">
+                                    <div class="flex col-span-4 items-center">
+                                        <span class="text-gray-800  text-sm font-semibold">
+                                            شرکت
+                                        </span>
+                                    </div>
+
+                                    <span class="text-gray-800 col-span-9 text-sm flex items-center">
+                                        نام بسته
+                                    </span>
+                                    <span class="text-gray-800 col-span-3 text-sm flex items-center">
+                                        حجم
+                                    </span>
+                                    <span class="text-gray-800 col-span-3 text-sm flex items-center">
+                                        بازه زمان/روز
+                                    </span>
+                                    <div class="text-gray-800 text-sm col-span-4 flex justify-center">
+                                        نوع سیمکارت
+                                    </div>
+                                </li>
+
+                                {% for item in packages %}
+                                <li
+                                    class="grid grid-cols-24 my-2 px-4 py-4 gap-x-2 items-center border border-gray-70 border-opacity-20 rounded-xl md:w-auto w-full">
+                                    <div class="flex col-span-4 items-center">
+
+                                        <div
+                                            class="flex items-center text-white justify-center ml-2 w-7 h-7 rounded  bg-gray-150">
+                                            <img
+                                                src="{{ url_for('static', filename='images/') }}{{ item['operator'] }}.png">
+                                        </div>
+
+                                        <span class="text-gray-350  text-sm font-semibold">
+                                            {% if item['operator'] == 'rtl' %}
+                                            رایتل
+                                            {% elif item['operator'] == 'mci' %}
+                                            همراه اول
+                                            {% elif item['operator'] == 'mtn' %}
+                                            ایرانسل
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                    <span class="text-gray-350 col-span-9 text-sm flex items-center">
+                                        {{ item['Desc_Fa'] }}
+                                    </span>
+                                    <span class="text-gray-350 col-span-3 text-sm flex items-center">
+                                        {{ (item['BoltonDataVol']) }} {{ item['BoltonDataVolTitle_En'] }}
+                                    </span>
+                                    <span class="text-gray-350 col-span-4 text-sm flex items-center">
+                                        {{ item['BoltonDurTitle_Fa'] }}
+                                    </span>
+
+                                    <span class="text-gray-350 col-span-3 text-sm flex items-center text-center">
+                                        {% if item['SimType'] == 'normal' %}
+                                        معمولی
+                                        {% elif item['SimType'] == 'permanent' %}
+                                        دائمی
+                                        {% elif item['SimType'] == 'prepaied' %}
+                                        اعتباری
+                                        {% elif item['SimType'] == 'data' %}
+                                        دیتا
+                                        {% endif %}
+                                    </span>
+
+                                </li>
+                                {% endfor %}
+                            </div>
+
+                            <!-- Livewire Component wire-end:1qOlOF4TNl0dfDcIwAmL -->
+                            <div class="rounded-2xl bg-white pb-7 ">
+                                <div class=" overflow-auto">
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div wire:id="fL2ALePXsAPnPfqbOZ08" x-clock=""
+                                x-data="{ show : window.Livewire.find('fL2ALePXsAPnPfqbOZ08').entangle('experienceToCreditModal') }"
+                                class="relative z-50">
+                                <div x-show="show"
+                                    class=" w-full h-full fixed right-0 top-0 flex items-center justify-center"
+                                    style="display: none;">
+                                    <div @click.away="show = false, $dispatch('change-overlay-hide')"
+                                        class="flex flex-col fixed lg:w-918 w-11/12 overflow-hidden max-h-90  rounded-2xl z-under-overlay  bg-white">
+                                        <div class="overflow-auto modal  pb-9   px-10 w-full">
+                                            <button class="absolute top-6 left-6"
+                                                @click="show = false, $dispatch('change-overlay-hide')" "="">
+                        <svg width=" 12" height="12" viewBox="0 0 12 12" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M11 1L6 6M6 6L1 11M6 6L11 11M6 6L1 1" stroke="#98A3B8"
+                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                                </svg>
+                                            </button>
+                                            <div
+                                                class="flex items-center justify-between mb-6 pt-15 sm:flex-row flex-col">
+                                                <div class="flex items-center self-center">
+                                                    <i class="w-2 h-2 bg-blue-700 rounded-full ml-2"></i>
+                                                    <h4 class="text-chambray-700 text-2xl font-bold">دیدگاه و نظر شما
+                                                    </h4>
+                                                </div>
+                                                <div class="self-center">
+                                                    <a href="https://roocket.ir/faq?question=user-panel"
+                                                        class="text-xl font-bold text-blue-700 hover:text-blue-500">تجربه
+                                                        کاربری چیست؟</a>
+                                                </div>
+                                            </div>
+                                            <hr class="mb-8">
+                                            <div class="mb-6">
+                                                <div
+                                                    class="bg-white shadow-user-experience-number sm:w-fit-content w-full mx-auto flex items-center py-7 px-8 rounded-lg sm:flex-row flex-col sm:text-right text-center">
+                                                    <div class="flex items-center ml-4">
+                                                        <svg class="ml-2" width="16" height="16" viewBox="0 0 16 16"
+                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                d="M10.7346 1.00173C11.3907 1.5849 11.8434 2.40482 11.9664 3.42758C11.9773 3.5179 12.0452 3.59189 12.1346 3.60856C13.9813 3.95287 15.0015 4.66833 15.5234 6.01471C15.555 6.09623 15.5264 6.18854 15.4559 6.24037C12.9253 8.10309 10.4433 9 8 9C5.55668 9 3.07472 8.1031 0.544056 6.24037C0.473646 6.18855 0.445001 6.09623 0.476599 6.01471C0.998486 4.66833 2.0187 3.95287 3.86538 3.60856C3.95481 3.59189 4.02275 3.5179 4.0336 3.42758C4.15657 2.40482 4.60935 1.5849 5.26542 1.00173C6.02744 0.324376 7.02462 0 8 0C8.97538 0 9.97256 0.324376 10.7346 1.00173ZM8 3.33333C7.12484 3.33333 6.34101 3.35306 5.63971 3.3995C5.50924 3.40814 5.40415 3.29221 5.43845 3.16605C5.57476 2.66472 5.83316 2.28102 6.15124 1.99827C6.63922 1.56451 7.30871 1.33333 8 1.33333C8.69129 1.33333 9.36078 1.56451 9.84876 1.99827C10.1668 2.28102 10.4252 2.66472 10.5615 3.16605C10.5959 3.29221 10.4908 3.40814 10.3603 3.3995C9.65899 3.35306 8.87516 3.33333 8 3.33333Z"
+                                                                fill="#98A3B8"></path>
+                                                            <path
+                                                                d="M0.383351 7.75965C0.258655 7.67499 0.0877197 7.75073 0.0731867 7.90074C0.0219618 8.4295 0 9.01622 0 9.66667C0 14.8822 1.412 16 8 16C14.588 16 16 14.8822 16 9.66667C16 9.01622 15.978 8.4295 15.9268 7.90074C15.9123 7.75073 15.7413 7.67499 15.6167 7.75965C13.1159 9.4574 10.5744 10.3333 8 10.3333C5.4256 10.3333 2.88408 9.4574 0.383351 7.75965Z"
+                                                                fill="#98A3B8"></path>
+                                                        </svg>
+                                                        <span class="text-gray-350">تجربه کاربری</span>
+                                                    </div>
+                                                    <span class="text-gray-800 text-36 font-bold">3,855 امتیاز</span>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="flex items-center sm:space-x-10 sm:space-x-reverse sm:space-y-0 space-y-5 sm:px-24 mb-10 sm:flex-row flex-col">
+                                                <div
+                                                    class="rounded-md border border-gray-90 sm:w-1/3 w-full px-4 py-3 flex flex-col items-center">
+                                                    <div>
+                                                        <span
+                                                            class="text-gray-350 text-opacity-70 font-medium text-sm">مقدار
+                                                            تجربه تبدیل شده</span>
+                                                    </div>
+                                                    <div class="flex items-center space-x-1 space-x-reverse">
+                                                        <span class="text-gray-800 text-26 font-bold">0 </span>
+                                                        <span class="text-gray-800 text-xl font-bold">امتیاز</span>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="rounded-md border border-gray-90 sm:w-1/3 w-full flex flex-col items-center px-4 py-3">
+                                                    <div>
+                                                        <span
+                                                            class="text-gray-350 text-opacity-70 font-medium text-sm">موجودی
+                                                            کیف پول شما</span>
+                                                    </div>
+                                                    <div>
+                                                        <div class="flex items-center">
+                                                            <span class="text-gray-800 text-26 font-bold ml-1">0</span>
+                                                            <svg width="17" height="20" viewBox="0 0 17 20" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M1.716 8.26C2.252 8.26 2.636 8.136 2.868 7.888C3.1 7.648 3.236 7.352 3.276 7H2.712C2.296 7 1.956 6.956 1.692 6.868C1.428 6.78 1.22 6.648 1.068 6.472C0.916 6.296 0.808 6.084 0.744 5.836C0.688 5.58 0.66 5.288 0.66 4.96C0.66 4.648 0.704 4.352 0.792 4.072C0.88 3.784 1.008 3.536 1.176 3.328C1.352 3.12 1.568 2.956 1.824 2.836C2.088 2.708 2.392 2.644 2.736 2.644C3.008 2.644 3.264 2.688 3.504 2.776C3.752 2.864 3.968 3.004 4.152 3.196C4.336 3.388 4.48 3.64 4.584 3.952C4.696 4.264 4.752 4.644 4.752 5.092V5.356H5.616C5.792 5.356 5.88 5.62 5.88 6.148C5.88 6.716 5.792 7 5.616 7H4.74C4.716 7.392 4.632 7.764 4.488 8.116C4.344 8.468 4.144 8.776 3.888 9.04C3.64 9.304 3.336 9.512 2.976 9.664C2.616 9.824 2.216 9.904 1.776 9.904H0.6L0.528 8.26H1.716ZM2.112 4.84C2.112 5.032 2.152 5.168 2.232 5.248C2.32 5.32 2.48 5.356 2.712 5.356H3.3V5.02C3.3 4.716 3.248 4.508 3.144 4.396C3.048 4.284 2.896 4.228 2.688 4.228C2.304 4.228 2.112 4.432 2.112 4.84ZM7.59328 5.356C7.69728 5.356 7.76528 5.42 7.79728 5.548C7.83728 5.676 7.85728 5.876 7.85728 6.148C7.85728 6.444 7.83728 6.66 7.79728 6.796C7.76528 6.932 7.69728 7 7.59328 7H5.61328C5.50928 7 5.44128 6.936 5.40928 6.808C5.36928 6.672 5.34928 6.472 5.34928 6.208C5.34928 5.904 5.36928 5.688 5.40928 5.56C5.44128 5.424 5.50928 5.356 5.61328 5.356H7.59328ZM9.57375 5.356C9.67775 5.356 9.74575 5.42 9.77775 5.548C9.81775 5.676 9.83775 5.876 9.83775 6.148C9.83775 6.444 9.81775 6.66 9.77775 6.796C9.74575 6.932 9.67775 7 9.57375 7H7.59375C7.48975 7 7.42175 6.936 7.38975 6.808C7.34975 6.672 7.32975 6.472 7.32975 6.208C7.32975 5.904 7.34975 5.688 7.38975 5.56C7.42175 5.424 7.48975 5.356 7.59375 5.356H9.57375ZM11.5542 5.356C11.6582 5.356 11.7262 5.42 11.7582 5.548C11.7982 5.676 11.8182 5.876 11.8182 6.148C11.8182 6.444 11.7982 6.66 11.7582 6.796C11.7262 6.932 11.6582 7 11.5542 7H9.57422C9.47022 7 9.40222 6.936 9.37022 6.808C9.33022 6.672 9.31022 6.472 9.31022 6.208C9.31022 5.904 9.33022 5.688 9.37022 5.56C9.40222 5.424 9.47022 5.356 9.57422 5.356H11.5542ZM13.5347 5.356C13.6387 5.356 13.7067 5.42 13.7387 5.548C13.7787 5.676 13.7987 5.876 13.7987 6.148C13.7987 6.444 13.7787 6.66 13.7387 6.796C13.7067 6.932 13.6387 7 13.5347 7H11.5547C11.4507 7 11.3827 6.936 11.3507 6.808C11.3107 6.672 11.2907 6.472 11.2907 6.208C11.2907 5.904 11.3107 5.688 11.3507 5.56C11.3827 5.424 11.4507 5.356 11.5547 5.356H13.5347ZM14.6632 5.356C14.8952 5.356 15.0592 5.304 15.1552 5.2C15.2592 5.088 15.3112 4.916 15.3112 4.684V3.436H16.8352V4.816C16.8352 5.544 16.6592 6.092 16.3072 6.46C15.9632 6.82 15.4592 7 14.7952 7H13.5352C13.4312 7 13.3632 6.936 13.3312 6.808C13.2912 6.672 13.2712 6.472 13.2712 6.208C13.2712 5.904 13.2912 5.688 13.3312 5.56C13.3632 5.424 13.4312 5.356 13.5352 5.356H14.6632ZM16.8232 2.116H15.3712V0.724H16.8232V2.116ZM14.9752 2.116H13.5232V0.724H14.9752V2.116ZM7.188 16.664C7.188 17.128 7.116 17.556 6.972 17.948C6.836 18.348 6.636 18.692 6.372 18.98C6.108 19.268 5.788 19.492 5.412 19.652C5.036 19.82 4.616 19.904 4.152 19.904H3.36C2.464 19.904 1.768 19.628 1.272 19.076C0.776 18.524 0.528 17.768 0.528 16.808V14.624H2.04V16.736C2.04 16.968 2.064 17.176 2.112 17.36C2.16 17.552 2.24 17.712 2.352 17.84C2.472 17.976 2.628 18.08 2.82 18.152C3.02 18.224 3.268 18.26 3.564 18.26H4.092C4.404 18.26 4.66 18.216 4.86 18.128C5.068 18.048 5.232 17.932 5.352 17.78C5.472 17.636 5.556 17.468 5.604 17.276C5.652 17.084 5.676 16.88 5.676 16.664V13.436H7.188V16.664ZM4.416 13.304H2.832V11.852H4.416V13.304ZM10.229 17C9.99697 17 9.77697 16.972 9.56897 16.916C9.36097 16.852 9.17697 16.748 9.01697 16.604C8.86497 16.46 8.74097 16.272 8.64497 16.04C8.55697 15.8 8.51297 15.504 8.51297 15.152V9.56H10.037V14.756C10.037 15.156 10.213 15.356 10.565 15.356H10.889C11.065 15.356 11.153 15.62 11.153 16.148C11.153 16.716 11.065 17 10.889 17H10.229ZM10.9467 15.356C11.1867 15.356 11.3787 15.316 11.5227 15.236C11.6667 15.148 11.7387 14.988 11.7387 14.756V14.624C11.7387 14.312 11.7867 14.024 11.8827 13.76C11.9787 13.488 12.1147 13.256 12.2907 13.064C12.4667 12.872 12.6827 12.72 12.9387 12.608C13.1947 12.496 13.4787 12.44 13.7907 12.44C14.1187 12.44 14.4107 12.496 14.6667 12.608C14.9227 12.72 15.1347 12.876 15.3027 13.076C15.4787 13.268 15.6107 13.504 15.6987 13.784C15.7947 14.056 15.8427 14.356 15.8427 14.684C15.8427 15.42 15.6547 15.992 15.2787 16.4C14.9107 16.8 14.4147 17 13.7907 17C13.4787 17 13.1747 16.936 12.8787 16.808C12.5907 16.68 12.3787 16.5 12.2427 16.268C12.0907 16.54 11.8947 16.732 11.6547 16.844C11.4147 16.948 11.1787 17 10.9467 17H10.8867C10.7827 17 10.7147 16.936 10.6827 16.808C10.6427 16.672 10.6227 16.472 10.6227 16.208C10.6227 15.904 10.6427 15.688 10.6827 15.56C10.7147 15.424 10.7827 15.356 10.8867 15.356H10.9467ZM14.3787 14.756C14.3787 14.588 14.3387 14.436 14.2587 14.3C14.1787 14.164 14.0227 14.096 13.7907 14.096C13.5587 14.096 13.4027 14.164 13.3227 14.3C13.2427 14.436 13.2027 14.588 13.2027 14.756C13.2027 15.156 13.3987 15.356 13.7907 15.356C14.1827 15.356 14.3787 15.156 14.3787 14.756Z"
+                                                                    fill="#475466"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="rounded-md border border-gray-90 sm:w-1/3 w-full flex flex-col px-4 py-3">
+                                                    <div class="flex justify-between self-start w-full">
+                                                        <span
+                                                            class="text-gray-350 text-opacity-70 font-medium text-sm">نرخ
+                                                            تبدیل</span>
+                                                        <div>
+                                                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                    d="M14.0593 3.1123H7.07257C4.6378 3.1123 3.11133 4.83623 3.11133 7.27584V13.8588C3.11133 16.2984 4.63054 18.0224 7.07257 18.0224H14.0585C16.5014 18.0224 18.0214 16.2984 18.0214 13.8588V7.27584C18.0214 4.83623 16.5014 3.1123 14.0593 3.1123Z"
+                                                                    stroke="#3B82F6" stroke-width="1.20892"
+                                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                                </path>
+                                                                <path d="M10.5612 13.7912V10.5674" stroke="#3B82F6"
+                                                                    stroke-width="1.20892" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></path>
+                                                                <path d="M10.5571 7.50747H10.5652" stroke="#3B82F6"
+                                                                    stroke-width="1.6119" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="self-start">
+                                                        <span class="text-gray-800 text-26 font-bold">1.01</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center flex-col">
+                                                <span class="text-gray-800 text-xl font-semibold mb-5">فرمول تبدیل تجربه
+                                                    به پول</span>
+                                                <div class="bg-blue-700 bg-opacity-5 py-5 px-6 rounded-lg mb-6">
+                                                    <p class="text-blue-700 text-xl font-semibold text-center"> نرخ
+                                                        تبدیل * (مقدار تجربه تبدیل شده - مقدار تجربه فعلی)</p>
+                                                </div>
+                                                <div class="flex items-center mb-5 sm:flex-row flex-col">
+                                                    <span
+                                                        class="sm:ml-5 text-base font-bold text-gray-500 self-center">اعتباری
+                                                        که میتوانید بدست آورید</span>
+                                                    <div class="flex items-center self-center">
+                                                        <span class="text-3xl font-bold text-blue-700 ml-2">3,894</span>
+                                                        <svg width="18" height="23" viewBox="0 0 18 23" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M1.91316 8.26105C2.44961 8.26105 2.83393 8.13695 3.06612 7.88874C3.29831 7.64854 3.43443 7.35229 3.47446 7H2.90999C2.49364 7 2.15336 6.95596 1.88914 6.86789C1.62492 6.77982 1.41675 6.64771 1.26462 6.47156C1.11249 6.29541 1.0044 6.08324 0.940348 5.83503C0.884302 5.57882 0.856278 5.28657 0.856278 4.9583C0.856278 4.64604 0.900315 4.34979 0.988388 4.06956C1.07646 3.78132 1.20457 3.53311 1.37271 3.32494C1.54886 3.11677 1.76504 2.95263 2.02125 2.83253C2.28547 2.70442 2.58972 2.64037 2.93401 2.64037C3.20624 2.64037 3.46245 2.68441 3.70265 2.77248C3.95086 2.86055 4.16704 3.00067 4.35119 3.19283C4.53534 3.38499 4.67946 3.6372 4.78355 3.94946C4.89564 4.26172 4.95169 4.64204 4.95169 5.09041V5.35463H5.81641C5.99256 5.35463 6.08063 5.61885 6.08063 6.14729C6.08063 6.71576 5.99256 7 5.81641 7H4.93968C4.91566 7.39233 4.83159 7.76464 4.68747 8.11693C4.54335 8.46922 4.34318 8.77748 4.08697 9.0417C3.83876 9.30592 3.53451 9.51409 3.17421 9.66622C2.81391 9.82635 2.41358 9.90642 1.97321 9.90642H0.796228L0.724168 8.26105H1.91316ZM2.30949 4.8382C2.30949 5.03036 2.34952 5.16647 2.42959 5.24654C2.51766 5.3186 2.6778 5.35463 2.90999 5.35463H3.49848V5.01835C3.49848 4.7141 3.44644 4.50592 3.34235 4.39383C3.24627 4.28174 3.09414 4.22569 2.88597 4.22569C2.50165 4.22569 2.30949 4.42986 2.30949 4.8382ZM7.79534 5.35463C7.89942 5.35463 7.96748 5.41868 7.99951 5.54679C8.03954 5.6749 8.05956 5.87506 8.05956 6.14729C8.05956 6.44354 8.03954 6.65972 7.99951 6.79583C7.96748 6.93194 7.89942 7 7.79534 7H5.81369C5.7096 7 5.64154 6.93595 5.60952 6.80784C5.56948 6.67173 5.54947 6.47156 5.54947 6.20734C5.54947 5.90309 5.56948 5.68691 5.60952 5.5588C5.64154 5.42269 5.7096 5.35463 5.81369 5.35463H7.79534ZM9.77746 5.35463C9.88154 5.35463 9.9496 5.41868 9.98163 5.54679C10.0217 5.6749 10.0417 5.87506 10.0417 6.14729C10.0417 6.44354 10.0217 6.65972 9.98163 6.79583C9.9496 6.93194 9.88154 7 9.77746 7H7.79581C7.69172 7 7.62366 6.93595 7.59164 6.80784C7.5516 6.67173 7.53159 6.47156 7.53159 6.20734C7.53159 5.90309 7.5516 5.68691 7.59164 5.5588C7.62366 5.42269 7.69172 5.35463 7.79581 5.35463H9.77746ZM11.7596 5.35463C11.8637 5.35463 11.9317 5.41868 11.9637 5.54679C12.0038 5.6749 12.0238 5.87506 12.0238 6.14729C12.0238 6.44354 12.0038 6.65972 11.9637 6.79583C11.9317 6.93194 11.8637 7 11.7596 7H9.77793C9.67384 7 9.60578 6.93595 9.57376 6.80784C9.53372 6.67173 9.51371 6.47156 9.51371 6.20734C9.51371 5.90309 9.53372 5.68691 9.57376 5.5588C9.60578 5.42269 9.67384 5.35463 9.77793 5.35463H11.7596ZM13.7417 5.35463C13.8458 5.35463 13.9138 5.41868 13.9459 5.54679C13.9859 5.6749 14.0059 5.87506 14.0059 6.14729C14.0059 6.44354 13.9859 6.65972 13.9459 6.79583C13.9138 6.93194 13.8458 7 13.7417 7H11.76C11.656 7 11.5879 6.93595 11.5559 6.80784C11.5158 6.67173 11.4958 6.47156 11.4958 6.20734C11.4958 5.90309 11.5158 5.68691 11.5559 5.5588C11.5879 5.42269 11.656 5.35463 11.76 5.35463H13.7417ZM14.8711 5.35463C15.1033 5.35463 15.2674 5.30259 15.3635 5.1985C15.4676 5.08641 15.5196 4.91426 15.5196 4.68207V3.43303H17.0449V4.81418C17.0449 5.54279 16.8688 6.09124 16.5165 6.45955C16.1722 6.81985 15.6678 7 15.0032 7H13.7422C13.6381 7 13.57 6.93595 13.538 6.80784C13.498 6.67173 13.4779 6.47156 13.4779 6.20734C13.4779 5.90309 13.498 5.68691 13.538 5.5588C13.57 5.42269 13.6381 5.35463 13.7422 5.35463H14.8711ZM17.0329 2.11193H15.5797V0.71877H17.0329V2.11193ZM15.1834 2.11193H13.7302V0.71877H15.1834V2.11193ZM8.38664 19.6637C8.38664 20.1281 8.31458 20.5565 8.17046 20.9488C8.03435 21.3491 7.83418 21.6934 7.56996 21.9817C7.30574 22.2699 6.98548 22.4941 6.60916 22.6542C6.23285 22.8224 5.8125 22.9064 5.34811 22.9064H4.55545C3.65871 22.9064 2.96213 22.6302 2.46571 22.0777C1.9693 21.5253 1.72109 20.7686 1.72109 19.8078V17.622H3.23435V19.7358C3.23435 19.968 3.25837 20.1761 3.30641 20.3603C3.35445 20.5525 3.43452 20.7126 3.54661 20.8407C3.66671 20.9768 3.82284 21.0809 4.015 21.153C4.21517 21.225 4.46338 21.2611 4.75962 21.2611H5.28806C5.60032 21.2611 5.85654 21.217 6.0567 21.1289C6.26488 21.0489 6.42901 20.9328 6.54911 20.7807C6.66921 20.6365 6.75328 20.4684 6.80132 20.2762C6.84936 20.0841 6.87338 19.8799 6.87338 19.6637V16.433H8.38664V19.6637ZM5.61233 16.3009H4.02701V14.8477H5.61233V16.3009ZM11.4301 20C11.198 20 10.9778 19.972 10.7696 19.9159C10.5614 19.8519 10.3773 19.7478 10.2171 19.6037C10.065 19.4595 9.94091 19.2714 9.84483 19.0392C9.75675 18.799 9.71272 18.5028 9.71272 18.1505V12.5538H11.238V17.7541C11.238 18.1545 11.4141 18.3546 11.7664 18.3546H12.0907C12.2668 18.3546 12.3549 18.6188 12.3549 19.1473C12.3549 19.7158 12.2668 20 12.0907 20H11.4301ZM12.1485 18.3546C12.3887 18.3546 12.5809 18.3146 12.725 18.2345C12.8691 18.1465 12.9412 17.9863 12.9412 17.7541V17.622C12.9412 17.3098 12.9892 17.0215 13.0853 16.7573C13.1814 16.4851 13.3175 16.2529 13.4936 16.0607C13.6698 15.8686 13.8859 15.7164 14.1422 15.6043C14.3984 15.4922 14.6826 15.4362 14.9949 15.4362C15.3231 15.4362 15.6154 15.4922 15.8716 15.6043C16.1278 15.7164 16.34 15.8726 16.5081 16.0727C16.6843 16.2649 16.8164 16.5011 16.9045 16.7813C17.0005 17.0535 17.0486 17.3538 17.0486 17.6821C17.0486 18.4187 16.8604 18.9912 16.4841 19.3995C16.1158 19.7998 15.6194 20 14.9949 20C14.6826 20 14.3784 19.9359 14.0821 19.8078C13.7939 19.6797 13.5817 19.4996 13.4456 19.2674C13.2934 19.5396 13.0973 19.7318 12.8571 19.8439C12.6169 19.948 12.3807 20 12.1485 20H12.0884C11.9844 20 11.9163 19.9359 11.8843 19.8078C11.8442 19.6717 11.8242 19.4716 11.8242 19.2073C11.8242 18.9031 11.8442 18.6869 11.8843 18.5588C11.9163 18.4227 11.9844 18.3546 12.0884 18.3546H12.1485ZM15.5834 17.7541C15.5834 17.586 15.5433 17.4339 15.4633 17.2977C15.3832 17.1616 15.2271 17.0936 14.9949 17.0936C14.7627 17.0936 14.6065 17.1616 14.5265 17.2977C14.4464 17.4339 14.4064 17.586 14.4064 17.7541C14.4064 18.1545 14.6025 18.3546 14.9949 18.3546C15.3872 18.3546 15.5834 18.1545 15.5834 17.7541Z"
+                                                                fill="#3B82F6"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <button wire:loading.remove="" wire:target="exchange" disabled=""
+                                                    type="button" wire:click="exchange"
+                                                    class="text-white bg-blue-700 text-base font-bold rounded-md py-4 px-7 mb-6 !bg-gray-300 cursor-not-allowed">
+                                                    <span>تبدیل و اضافه کردن به کیف پول </span>
+                                                </button>
+
+                                                <button wire:loading="" wire:target="exchange"
+                                                    class="text-white bg-blue-700 text-base font-bold rounded-md py-4 px-7 mb-6 !bg-gray-400 cursor-not-allowed">
+                                                    <svg class="w-6" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                        viewBox="25 25 50 50">
+
+                                                        <circle class="stroke-current text-white text-opacity-30"
+                                                            cx="50" cy="50" r="20" fill="none" stroke-width="8"
+                                                            stroke-linecap="round" stroke-dashoffset="0"
+                                                            stroke-dasharray="200, 300">
+
+                                                        </circle>
+                                                        <circle class="stroke-current text-white" cx="50" cy="50" r="20"
+                                                            fill="none" stroke-width="8" stroke-linecap="round"
+                                                            stroke-dashoffset="0" stroke-dasharray="100, 200">
+                                                            <animateTransform attributeName="transform"
+                                                                attributeType="XML" type="rotate" from="0 50 50"
+                                                                to="360 50 50" dur="2.5s" repeatCount="indefinite">
+                                                            </animateTransform>
+                                                            <animate attributeName="stroke-dashoffset"
+                                                                values="0;-30;-124" dur="1.25s"
+                                                                repeatCount="indefinite"></animate>
+                                                            <animate attributeName="stroke-dasharray"
+                                                                values="0,200;110,200;110,200" dur="1.25s"
+                                                                repeatCount="indefinite"></animate>
+                                                        </circle>
+                                                    </svg> </button>
+                                                <span class="text-gray-500 font-medium text-base text-center">به طور
+                                                    موقت حداقل مقداری که میتوانید به اعتبار خود اضافه کنید <span
+                                                        class="font-bold">15,000</span> تومان است.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- Livewire Component wire-end:fL2ALePXsAPnPfqbOZ08 -->
+                        </div>
+                    </div>
+
+                    <!-- Livewire Component wire-end:YMl8ncFNZfvBMzNjGGrO -->
+                </div>
+            </div>
+        </section>
+        </div>
+        </div>
+        </section>
+    </main>
+
+</body>
+<script>
+
+    function update() {
+        a = document.getElementById('backShadow');
+        b = document.getElementById('updateModal');
+        a.style.display = 'block';
+        b.style.display = 'block';
+
+        setInterval(function () {
+            window.location.href = 'updatePackage';
+        }, 8000);
+
+    }
+
+
+</script>
+
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
+<link type="text/css" rel="stylesheet" id="dark-mode-general-link">
+<style type="text/css" id="dark-mode-custom-style" lang="en"></style>
+<style type="text/css" id="dark-mode-native-style" lang="en"></style>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پیشگامان💪🏻✨ - پنل کاربری</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/list.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/app.css') }}">
+
+
+
+</head>
+
+<body x-data="{ showOverlay : false }" :class="{' overflow-hidden':showOverlay}" class="bg-none font-iranyekanBakh"
+    cz-shortcut-listen="true">
+    <div @change-overlay-show.window="showOverlay = true" @change-overlay-hide.window="showOverlay = false"
+        @click="$dispatch('aside-handler-hide'),showOverlay=false" :class="{ 'hidden': ! showOverlay }" id="overlay"
+        class="z-50 w-full h-full fixed backdrop-filter blur-sm bg-opacity-60 bg-biscay-700 hidden">
+    </div>
+
+    <main class="grid lg:grid-cols-24 min-h-screen grid-cols-1">
+
+
+        {% include './parts/rightSide.html' %}
+
+        <section class="xl:col-span-20 h-height-panel lg:col-span-19">
+            {% include './parts/header.html' %}
+            <div class="w-full h-full bg-gray-200 rounded-tr-3xl xl:px-9 pt-10 pb-14 ">
+                <div class="container">
+                    <section x-data="{type:window.Livewire.find('GnN8UjgT6HgHNK4IWFpG').entangle('type')}"
+                        class="lg:grid lg:grid-cols-24 lg:gap-6 flex flex-col">
+                        {% include './parts/subMenu.html' %}
+                        <div class="xl:col-span-18 col-span-16">
+                            <div class="bg-white rounded-2xl md:px-11 px-3 sm:py-8 py-2">
+                                <div wire:id="SioY8FRIWYdUma1IGguy" class="flex flex-col">
+
+                                    <div>
+                                        <div class="mb-10  last:mb-0 md:overflow-visible p-6">
+                                            <div class="mb-4 ">
+                                                <h2 class="text-dark-550 font-bold flex items-center text-2xl">
+                                                    <i class="w-2 h-2 bg-gray-350 ml-2 rounded-full "></i>
+                                                    تاریخچه تخمین قیمت‌های شما
+                                                </h2>
+                                            </div>
+                                            <ul class="grid gap-y-2 md:w-auto w-screen min-900">
+
+                                                {% for item in history %}
+                                                <li
+                                                    class="grid grid-cols-24 px-4 py-4 gap-x-2 items-center border border-gray-70 border-opacity-20 rounded-xl md:w-auto w-full">
+                                                    <div class="flex col-span-12 items-center">
+                                                        <div
+                                                            class="flex items-center text-white justify-center ml-2 w-7 h-7 rounded  bg-gray-150">
+                                                            <img src="{{ url_for('static', filename='images/rtl.png') }}"
+                                                                alt="">
+                                                        </div>
+                                                        <span class="text-gray-800 text-sm font-semibold" href="#">
+                                                            {{ item['package'] }}
+                                                        </span>
+                                                    </div>
+                                                    <span class="text-gray-350 col-span-4 text-sm flex items-center">
+                                                        {{ item['period'] }} روزه
+                                                    </span>
+                                                    <span class="text-gray-350 col-span-4 text-sm flex items-center">
+                                                        
+                                                        {{ item['price'] }} ریال
+                                                    </span>
+                                                    <div class="col-span-4 flex justify-center">
+                                                    {%  if item['feedback'] == 'like'  %}
+                                                        <a 
+                                                            class="px-1 h-7 pt-0.5  rounded border text-green-700 font-medium border-green-700 text-20 transition duration-200 bg-green-700 hover:text-white">
+                                                            👍🏻
+                                                        </a>
+                                                        {%  elif item['feedback'] == 'dislike'  %}
+                                                        &nbsp;
+                                                        <a 
+                                                            class="px-1 h-7 pt-0.5  rounded border text-red-700 font-medium border-red-700 text-20 transition duration-200 bg-red-700 hover:text-white">
+                                                            👎🏻
+                                                        </a>
+                                                    {%  else  %}
+                                                    <a 
+                                                    href="/feedback?type=like&id={{ item['_id'] }}"
+                                                        class="px-1 h-7 pt-0.5  rounded border text-green-700 font-medium border-green-700 text-20 transition duration-200  hover:text-white">
+                                                            👍🏻
+                                                        </a>
+                                                        
+                                                        &nbsp;
+                                                        <a 
+                                                        href="/feedback?type=dislike&id={{ item['_id'] }}"
+                                                            class="px-1 h-7 pt-0.5  rounded border text-red-700 font-medium border-red-700 text-20 transition duration-200  hover:text-white">
+                                                            👎🏻
+                                                        </a>
+                                                        {%  endif  %}
+                                                    </div>
+                                                </li>
+                                                {% endfor %}
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Livewire Component wire-end:SioY8FRIWYdUma1IGguy -->
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+            </div>
+        </section>
+        </div>
+        </div>
+        </section>
+    </main>
+
+</body>
+<script>
+
+
+    function switchEasy(event) {
+        a = document.getElementById('easyInput');
+        b = document.getElementById('hardInput');
+        if (event) {
+            a.style.display = 'block';
+            b.style.display = 'none';
+        } else {
+            b.style.display = 'block';
+            a.style.display = 'none';
+        }
+
+    }
+
+    function onInternetValueChange(event, target) {
+        a = document.getElementById(target);
+        a.innerHTML = event + ' مگابایت ' + ' - ' + (event / 1024).toFixed(2) + ' گیگابایت ';
+    }
+
+    function onPhoneValueChange(event, target) {
+        a = document.getElementById(target);
+        a.innerHTML = event + ' دقیقه ' + ' - ' + (event / 60).toFixed(2) + ' ساعت ';
+
+    }
+    function onSmsValueChange(event, target) {
+        a = document.getElementById(target);
+        a.innerHTML = event + ' عدد ';
+
+    }
+    function onPeriodValueChange(event, target) {
+        a = document.getElementById(target);
+        a.innerHTML = event + ' روز ';
+
+    }
+
+
+
+</script>
+
+</html>

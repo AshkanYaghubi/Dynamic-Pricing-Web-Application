@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
+<link type="text/css" rel="stylesheet" id="dark-mode-general-link">
+<style type="text/css" id="dark-mode-custom-style" lang="en"></style>
+<style type="text/css" id="dark-mode-native-style" lang="en"></style>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لیست اعلانات</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/list.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/app.css') }}">
+
+
+</head>
+
+<body x-data="{ showOverlay : false }" :class="{' overflow-hidden':showOverlay}" class="bg-none font-iranyekanBakh"
+    cz-shortcut-listen="true">
+    <div @change-overlay-show.window="showOverlay = true" @change-overlay-hide.window="showOverlay = false"
+        @click="$dispatch('aside-handler-hide'),showOverlay=false" :class="{ 'hidden': ! showOverlay }" id="overlay"
+        class="z-50 w-full h-full fixed backdrop-filter blur-sm bg-opacity-60 bg-biscay-700 hidden"></div>
+    <main class="grid lg:grid-cols-24 min-h-screen grid-cols-1">
+        
+        {% include './parts/rightSide.html' %}
+        <section class="xl:col-span-20 h-height-panel lg:col-span-19">
+
+            {% include './parts/header.html' %}
+
+            <div class="w-full h-full bg-gray-200 rounded-tr-3xl xl:px-9 pt-10 pb-14 ">
+                <div class="container">
+
+                    <section class="lg:grid lg:grid-cols-24 lg:gap-6 flex flex-col">
+
+
+                        <div class="xl:col-span-18 col-span-16">
+                            <div class="bg-white rounded-2xl md:px-11 px-3 sm:py-8 py-2">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="action" value="{% block action %}{% if update %}update{% else %}add{% endif %}{% endblock action %}">
+                                    <div class="flex flex-col">
+                                        <div class="mb-4  last:mb-0 mt-4">
+                                            <div>
+                                                <h2 class="text-dark-550 font-bold flex items-center mb-3 text-2xl">
+                                                    <i class="w-2 h-2 bg-gray-350 ml-2 rounded-full "></i>
+                                                    ثبت ارز جدید
+                                                </h2>
+                                            </div>
+                                            <div>
+                                                <div class="grid sm:grid-cols-2 grid-cols-1 gap-x-14 gap-y-6">
+                                                    <div class="flex flex-col">
+                                                        <label class="text-dark-550 text-sm mb-1 font-medium pr-3"
+                                                            for="">
+                                                            نام کوین
+                                                        </label>
+                                                        <input
+                                                        {% block read %}{% if update %}readonly="readonly"{% endif %}{% endblock read %}
+                                                        name="name"
+                                                        style="direction: ltr;" wire:model.defet="social.website"
+                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-blue-700 focus:bg-opacity-10 border border-blue-700 border-opacity-0 focus:border-opacity-100"
+                                                            placeholder="مثال: BTCUSDT" type="text" required value="{{ name }}"> 
+                                                    </div>
+                                                    <div class="flex flex-col ">
+                                                        <label class="text-dark-550 text-sm mb-1 font-medium pr-3"
+                                                            for="">
+                                                            تایم فریم
+                                                        </label>
+                                                        <select name="timeframe" id="" dir="ltr"
+                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-blue-700 focus:bg-opacity-10 border border-blue-700 border-opacity-0 focus:border-opacity-100 ">
+                                                            <option value="5m">5 دقیقه</option>
+                                                            <option value="15m">15 دقیقه</option>
+                                                            <option value="3m">30 دقیقه</option>
+                                                            <option value="1h">1 ساعته</option>
+                                                            <option value="4h">4 ساعته</option>
+                                                            <option value="1d">1 روزه</option>
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="flex flex-col ">
+                                                        <label class="text-dark-550 text-sm mb-1 font-medium pr-3"
+                                                            for="">
+                                                            استراتژی
+                                                        </label>
+                                                        <select name="strategy" id="" dir="ltr"
+                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-blue-700 focus:bg-opacity-10 border border-blue-700 border-opacity-0 focus:border-opacity-100 ">
+                                                            <option value="ichimoku">ایچیموکو</option>
+                                                            <option value="spectrum">اسپکتروم</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <label class="text-dark-550 text-sm mb-1 font-medium pr-3"
+                                                            for="">
+                                                            نام فارسی (اختیاری)
+                                                        </label>
+                                                        <input style="direction: ltr;" wire:model.defet="social.website"
+                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-blue-700 focus:bg-opacity-10 border border-blue-700 border-opacity-0 focus:border-opacity-100"
+                                                            placeholder="مثال: بیتکوین" type="text">
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <label class="text-dark-550 text-sm mb-1 font-medium pr-3"
+                                                            for="">
+                                                            نقطه Low
+                                                        </label>
+                                                        <input 
+                                                        name="low"
+                                                        style="direction: ltr;" wire:model.defet="social.website"
+                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-red-700 focus:bg-opacity-10 border border-red-600 border-opacity-0 focus:border-opacity-100"
+                                                            placeholder="مثال: 532.65" type="text" required="required">
+                                                    </div>
+                                                    
+                                                    <div class="flex flex-col">
+                                                        <label class="text-dark-550 text-sm mb-1 font-medium pr-3"
+                                                            for="">
+                                                            نقطه High
+                                                        </label>
+                                                        <input 
+                                                        name="high"
+                                                        style="direction: ltr;" wire:model.defet="social.website"
+                                                            class="h-10 placeholder-gray-320 bg-gray-350 bg-opacity-10 rounded-lg  transition duration-200 text-sm text-gray-330 px-3 font-medium focus:bg-green-600 focus:bg-opacity-10 border border-green-700 border-opacity-0 focus:border-opacity-100"
+                                                            placeholder="مثال: 756.15" type="text" required="required">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button wire:target="onSubmit" wire:loading.remove="" type="submit"
+                                            class="py-2 self-end px-4 text-white bg-blue-700 rounded border border-blue-700 transition duration-200 hover:bg-white hover:text-blue-700 hover:shadow-sm font-medium mt-10">
+                                            {% block content %}
+                                            {% if update %}
+                                            بروز رسانی
+                                            {% else %}
+                                            ثبت کوین
+                                            {% endif %}
+                                        {% endblock content %}
+                                        </button>
+                                        <button wire:target="onSubmit" wire:loading.flex="" type="button"
+                                            class="py-2 self-end px-4 text-white bg-blue-700 rounded border border-blue-700 font-medium mt-10">
+                                            <svg class="w-5" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="25 25 50 50">
+
+                                                <circle class="stroke-current text-white text-opacity-30" cx="50"
+                                                    cy="50" r="20" fill="none" stroke-width="8" stroke-linecap="round"
+                                                    stroke-dashoffset="0" stroke-dasharray="200, 300">
+
+                                                </circle>
+                                                <circle class="stroke-current text-white" cx="50" cy="50" r="20"
+                                                    fill="none" stroke-width="8" stroke-linecap="round"
+                                                    stroke-dashoffset="0" stroke-dasharray="100, 200">
+                                                    <animateTransform attributeName="transform" attributeType="XML"
+                                                        type="rotate" from="0 50 50" to="360 50 50" dur="2.5s"
+                                                        repeatCount="indefinite"></animateTransform>
+                                                    <animate attributeName="stroke-dashoffset" values="0;-30;-124"
+                                                        dur="1.25s" repeatCount="indefinite"></animate>
+                                                    <animate attributeName="stroke-dasharray"
+                                                        values="0,200;110,200;110,200" dur="1.25s"
+                                                        repeatCount="indefinite"></animate>
+                                                </circle>
+                                            </svg> </button>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                        <div x-show="active" x-data="{ active : false }"
+                            @success-modal-handler.window="active = !active"
+                            @click.away="active = !active , $dispatch('change-overlay-show')"
+                            class="fixed bg-white w-533 z-50 bottom-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2 rounded-2xl p-6"
+                            style="display: none;">
+                            <div class="mb-8 flex justify-end cursor-pointer"
+                                @click="$dispatch('change-overlay-show') , active = false">
+                                <svg class="" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 1L6 6M6 6L1 11M6 6L11 11M6 6L1 1" stroke="currentColor"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <svg class="mb-10" width="40" height="40" viewBox="0 0 40 40" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M0 20C0 36.47 3.53 40 20 40C36.47 40 40 36.47 40 20C40 3.53 36.47 0 20 0C3.53 0 0 3.53 0 20ZM27.8452 13.8215C28.4961 14.4724 28.4961 15.5276 27.8452 16.1785L19.5118 24.5118C18.861 25.1627 17.8057 25.1627 17.1548 24.5118L12.9882 20.3452C12.3373 19.6943 12.3373 18.639 12.9882 17.9882C13.639 17.3373 14.6943 17.3373 15.3452 17.9882L18.3333 20.9763L25.4882 13.8215C26.139 13.1706 27.1943 13.1706 27.8452 13.8215Z"
+                                        fill="#22C55E"></path>
+                                </svg>
+                                <h5 class="text-green-700 font-bold text-36 mb-12">تغییرات با موفقیت انجام شد.</h5>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
